@@ -1,6 +1,10 @@
 # Konuri AutoMaton ~~by [Oein](https://github.com/Oein)~~
 
-음을 동시에 칠 수 있어요!
+# 주요 기능
+
+- 음을 동시에 칠 수 있어요.
+- 여러개의 키 스타일을 지원해요.
+- 실제 midi 키보드를 연결해 칠 수 있어요.
 
 # 키 스타일
 
