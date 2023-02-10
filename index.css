@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "ONE-Mobile-POP";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "ONE-Mobile-POP", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.playing {
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: inline-block;
+  background-color: antiquewhite;
+  margin: 4px;
+}
+
+.playing[data-pwo="0"] {
+  background-color: #d74532;
+  color: white;
+}
+.playing[data-pwo="2"] {
+  background-color: #f19d38;
+  color: white;
+}
+.playing[data-pwo="4"] {
+  background-color: #fdff83;
+}
+.playing[data-pwo="5"] {
+  background-color: #5cc93b;
+}
+.playing[data-pwo="7"] {
+  background-color: #4596f1;
+}
+.playing[data-pwo="9"] {
+  background-color: #143392;
+  color: white;
+}
+.playing[data-pwo="11"] {
+  background-color: #9269c6;
+  color: white;
+}
+.playing[data-pwo="12"] {
+  background-color: #d74532;
+  color: white;
+}
+.playing[data-pwo="14"] {
+  background-color: #f19d38;
+  color: white;
+}
+.playing[data-pwo="16"] {
+  background-color: #fdff83;
+}
+
+#octaContainer,
+#keyStyle {
+  transition: all 0.2s ease;
+}
