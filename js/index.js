@@ -1,4 +1,5 @@
-import style_midikeys_keymap from "./keyMaps/midikeys.js";
+import sampler_settings from "./samplerSettings.js";
+
 import style_automk2_keymap from "./keyMaps/automk2.js";
 
 import style_1keyHandler from "./keyHandlers/style1.js";
@@ -7,27 +8,9 @@ import midiKeys_style_keyHandler from "./keyHandlers/midiKeys.js";
 
 let notes = document.getElementById("notes");
 export let now_octave = 4;
+
 let is_midi_mode = false;
 let has_midi_access = false;
-
-const sampler_settings = {
-  urls: {
-    C4: "c4.mp3",
-    D4: "d4.mp3",
-    E4: "e4.mp3",
-    F4: "f4.mp3",
-    G4: "g4.mp3",
-    A4: "a4.mp3",
-    B4: "b4.mp3",
-    C5: "c5.mp3",
-    D5: "d5.mp3",
-    E5: "e5.mp3",
-  },
-  baseUrl: "https://oein.github.io/Riano/audio/konuri/",
-  onload: () => {
-    console.log("Loaded!");
-  },
-};
 
 const sampler = new Tone.Sampler(sampler_settings).toDestination();
 
