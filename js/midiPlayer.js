@@ -1,23 +1,19 @@
+import sampler_settings from "./samplerSettings.js";
+
 const playBtn = document.querySelector("#player");
 const file = document.querySelector("#mfilein");
-const sampler_settings = {
-  urls: {
-    C4: "c4.mp3",
-    D4: "d4.mp3",
-    E4: "e4.mp3",
-    F4: "f4.mp3",
-    G4: "g4.mp3",
-    A4: "a4.mp3",
-    B4: "b4.mp3",
-    C5: "c5.mp3",
-    D5: "d5.mp3",
-    E5: "e5.mp3",
-  },
-  baseUrl: "https://oein.github.io/Riano/audio/konuri/",
-};
 
 let currentMidi = null;
 let playing = false;
+
+function stopit() {
+  playBtn.textContent = "재생";
+  while (synths.length) {
+    const synth = synths.shift();
+    synth.dispose();
+  }
+  synths = [];
+}
 
 function parseFile(file) {
   //read the file
@@ -31,14 +27,15 @@ function parseFile(file) {
 file.addEventListener("change", (e) => {
   if (file.files.length == 0) return;
   parseFile(file.files[0]);
+  stopit();
 });
 
 let synths = [];
-let loops = [];
 
 playBtn.addEventListener("click", async (e) => {
   playing = !playing;
   if (playing && currentMidi) {
+    Tone.start();
     playBtn.textContent = "로딩중";
 
     const trackCount = currentMidi.tracks.length;
@@ -77,19 +74,15 @@ playBtn.addEventListener("click", async (e) => {
         synths[i].triggerAttackRelease(
           note.name,
           note.duration,
-          note.time + now_t,
+          note.time + now_t + 0.1,
           note.velocity
         );
       });
     });
 
     playBtn.textContent = "정지";
-  } else {
-    playBtn.textContent = "재생";
-    while (synths.length) {
-      const synth = synths.shift();
-      synth.dispose();
-    }
-    synths = [];
-  }
+    Tone.Transport.start();
+  } else stopit();
 });
+
+export default {};
