@@ -14,6 +14,14 @@ let has_midi_access = false;
 
 const sampler = new Tone.Sampler(sampler_settings).toDestination();
 
+sampler.volume.value = 5;
+const volset = (e) => {
+  sampler.volume.value = e.target.value;
+};
+
+document.getElementById("vol").addEventListener("change", volset);
+document.getElementById("vol").addEventListener("mousemove", volset);
+
 let playings = [];
 
 function deleteInArray(array, element) {

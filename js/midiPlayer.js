@@ -85,4 +85,14 @@ playBtn.addEventListener("click", async (e) => {
   } else stopit();
 });
 
+const volset = (e) => {
+  let vol = e.target.value;
+  synths.forEach((syh) => {
+    syh.volume.value = vol;
+  });
+};
+
+document.getElementById("vol").addEventListener("change", volset);
+document.getElementById("vol").addEventListener("mousemove", volset);
+
 export default {};
