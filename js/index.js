@@ -129,10 +129,6 @@ function keyHandler(e, t) {
 }
 
 function octave_keyHandler(e) {
-  const attachNO = (pit) => {
-    return (pit % 12) + now_octave * 12;
-  };
-
   const apply = (oc) => {
     let npits = playings.map((i) => i - now_octave * 12);
     now_octave = oc;
@@ -221,6 +217,8 @@ document.addEventListener("keyup", (e) => keyHandler(e.code, false));
 document
   .getElementById("midiuse")
   .addEventListener("change", (e) => midiUseHandler(e.target.checked));
+
+document.getElementById("keyStyle").addEventListener("change", removeAllNotes);
 
 shOctaContainer(true);
 
