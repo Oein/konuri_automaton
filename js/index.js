@@ -123,17 +123,24 @@ function keyHandler(e, t) {
   if (e == "Space") return removeAllNotes();
   switch (document.getElementById("keyStyle").value) {
     case "yt":
-      now_octave = 4;
-      showOctave();
       return youtube_style_keyHandler(e, t);
     case "ri":
-      now_octave = 4;
-      showOctave();
       return style_1keyHandler(e, t);
     case "mk":
-      now_octave = 3;
-      showOctave();
       return midiKeys_style_keyHandler(e, t);
+  }
+}
+
+function octave_keyHandler(e) {
+  if (e == "ShiftLeft") {
+    now_octave = Math.max(1, now_octave - 1);
+    showOctave();
+    return;
+  }
+  if (e == "ShiftRight") {
+    now_octave = Math.min(6, now_octave + 1);
+    showOctave();
+    return;
   }
 }
 
@@ -198,6 +205,12 @@ document.addEventListener(
   "keydown",
   (e) => !e.repeat && keyHandler(e.code, true)
 );
+
+document.addEventListener(
+  "keydown",
+  (e) => !e.repeat && octave_keyHandler(e.code)
+);
+
 document.addEventListener("keyup", (e) => keyHandler(e.code, false));
 document
   .getElementById("midiuse")

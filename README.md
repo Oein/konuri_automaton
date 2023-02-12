@@ -1,4 +1,4 @@
-# Konuri AutoMaton ~~by [Oein](https://github.com/Oein)~~
+# Konuri AutoMaton by [Oein](https://github.com/Oein)
 
 # 주요 기능
 
@@ -8,6 +8,10 @@
 - Midi 파일을 재생할 수 있어요. (너무 크면 프로그램이 죽어요 ㅠㅠ)
 
 # 키 스타일
+
+## 공통
+
+LShift와 RShift로 옥타브를 변경할 수 있습니다.
 
 ## 유튜브 스타일
 
