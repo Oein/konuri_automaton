@@ -109,7 +109,6 @@ export function removeAllNotes() {
 }
 
 function keyHandler(e, t) {
-  console.log(e);
   if (is_midi_mode) return;
   if (e == "Space") return removeAllNotes();
   switch (document.getElementById("keyStyle").value) {
@@ -164,7 +163,6 @@ function onMIDIdeviceMessage(e) {
 }
 
 function midiEventHandler(midiAccess, e) {
-  console.log("MIDI", e);
   if (e?.port?.state == "disconnected") {
     toastr.warning(
       `MIDI 장치가 연결이 해제되었어요. / ${
@@ -186,7 +184,6 @@ function midiEventHandler(midiAccess, e) {
  * @param {MIDIAccess} midiAccess
  */
 function midiRequestSuccessHandler(midiAccess) {
-  console.log("Success!");
   has_midi_access = true;
   midiAccess.addEventListener("statechange", (e) =>
     midiEventHandler(midiAccess, e)
@@ -196,7 +193,6 @@ function midiRequestSuccessHandler(midiAccess) {
 
 function requestMidiAccess() {
   if (has_midi_access) return;
-  console.log("Requesting midi access");
   navigator
     .requestMIDIAccess()
     .catch(midiRequestErorHandler)
