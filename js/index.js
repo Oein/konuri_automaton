@@ -1,10 +1,9 @@
 import sampler_settings from "./samplerSettings.js";
 
-import style_automk2_keymap from "./keyMaps/automk2.js";
-
 import style_1keyHandler from "./keyHandlers/style1.js";
 import youtube_style_keyHandler from "./keyHandlers/youtube.js";
 import midiKeys_style_keyHandler from "./keyHandlers/midiKeys.js";
+import mk2_style_keyHandler from "./keyHandlers/mk2.js";
 
 let notes = document.getElementById("notes");
 export let now_octave = 4;
@@ -110,13 +109,6 @@ export function removeAllNotes() {
   for (let i = 0; i < 2; i++) playings.forEach(removePlayElement);
 }
 
-function konuri_mk2_style_keyHandler(key, kick) {
-  if (typeof style_automk2_keymap[key] == "undefined") return;
-  let pitch = style_automk2_keymap[key] + now_octave * 12;
-  if (kick) addPlayElement(pitch);
-  else removePlayElement(pitch);
-}
-
 function keyHandler(e, t) {
   console.log(e);
   if (is_midi_mode) return;
@@ -128,19 +120,30 @@ function keyHandler(e, t) {
       return style_1keyHandler(e, t);
     case "mk":
       return midiKeys_style_keyHandler(e, t);
+    case "ko":
+      return mk2_style_keyHandler(e, t);
   }
 }
 
 function octave_keyHandler(e) {
-  if (e == "ShiftLeft") {
-    now_octave = Math.max(1, now_octave - 1);
+  const attachNO = (pit) => {
+    return (pit % 12) + now_octave * 12;
+  };
+
+  const apply = (oc) => {
+    let npits = playings.map((i) => i - now_octave * 12);
+    now_octave = oc;
     showOctave();
-    return;
+    npits = npits.map((i) => i + oc * 12);
+    removeAllNotes();
+    npits.forEach(addPlayElement);
+  };
+
+  if (e == "ShiftLeft") {
+    return apply(Math.max(2, now_octave - 1));
   }
   if (e == "ShiftRight") {
-    now_octave = Math.min(6, now_octave + 1);
-    showOctave();
-    return;
+    return apply(Math.min(6, now_octave + 1));
   }
 }
 
