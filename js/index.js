@@ -1,11 +1,8 @@
 import sampler_settings from "./samplerSettings.js";
 
-import style_1keyHandler from "./keyHandlers/style1.js";
 import youtube_style_keyHandler from "./keyHandlers/youtube.js";
 import midiKeys_style_keyHandler from "./keyHandlers/midiKeys.js";
 import mk2_style_keyHandler from "./keyHandlers/mk2.js";
-import mk2sin_style_keyHandler from "./keyHandlers/mk2sin.js";
-import smidiKeys_style_keyHandler from "./keyHandlers/midiKeyssin.js";
 
 let notes = document.getElementById("notes");
 export let now_octave = 4;
@@ -117,17 +114,17 @@ function keyHandler(e, t) {
   if (e == "Space") return removeAllNotes();
   switch (document.getElementById("keyStyle").value) {
     case "yt":
-      return youtube_style_keyHandler(e, t);
+      return youtube_style_keyHandler(e, t, true);
     case "ri":
-      return style_1keyHandler(e, t);
+      return youtube_style_keyHandler(e, t, false);
     case "ms":
-      return smidiKeys_style_keyHandler(e, t);
+      return midiKeys_style_keyHandler(e, t, true);
     case "mk":
-      return midiKeys_style_keyHandler(e, t);
+      return midiKeys_style_keyHandler(e, t, false);
     case "ks":
-      return mk2sin_style_keyHandler(e, t);
+      return mk2_style_keyHandler(e, t, true);
     case "ko":
-      return mk2_style_keyHandler(e, t);
+      return mk2_style_keyHandler(e, t, false);
   }
 }
 
