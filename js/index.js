@@ -4,6 +4,7 @@ import style_1keyHandler from "./keyHandlers/style1.js";
 import youtube_style_keyHandler from "./keyHandlers/youtube.js";
 import midiKeys_style_keyHandler from "./keyHandlers/midiKeys.js";
 import mk2_style_keyHandler from "./keyHandlers/mk2.js";
+import mk2sin_style_keyHandler from "./keyHandlers/mk2sin.js";
 
 let notes = document.getElementById("notes");
 export let now_octave = 4;
@@ -120,6 +121,8 @@ function keyHandler(e, t) {
       return style_1keyHandler(e, t);
     case "mk":
       return midiKeys_style_keyHandler(e, t);
+    case "ks":
+      return mk2sin_style_keyHandler(e, t);
     case "ko":
       return mk2_style_keyHandler(e, t);
   }
