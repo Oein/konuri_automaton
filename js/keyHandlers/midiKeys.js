@@ -1,11 +1,8 @@
-import { addPlayElement, now_octave, removePlayElement } from "../index.js";
 import style_midikeys_keymap from "../keyMaps/midikeys.js";
+import khn from "./main.js";
 
 function midiKeys_style_keyHandler(key, kick) {
-  if (typeof style_midikeys_keymap[key] == "undefined") return;
-  let pitch = style_midikeys_keymap[key] + now_octave * 12;
-  if (kick) addPlayElement(pitch);
-  else removePlayElement(pitch);
+  khn(style_midikeys_keymap, key, kick, false);
 }
 
 export default midiKeys_style_keyHandler;
