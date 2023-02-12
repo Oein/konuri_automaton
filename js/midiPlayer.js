@@ -70,6 +70,7 @@ playBtn.addEventListener("click", async (e) => {
     let now_t = Tone.now();
 
     currentMidi.tracks.forEach((track, i) => {
+      if (track.notes.length == 0) return;
       track.notes.forEach((note) => {
         synths[i].triggerAttackRelease(
           note.name,
